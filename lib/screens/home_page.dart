@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:test2/screens/screens/onboarding_screen.dart';
 import 'package:test2/utils/my_constants.dart';
 import 'package:test2/widgets/currency_widgets.dart';
 import 'package:http/http.dart'; //You can also import the browser version
@@ -60,7 +61,9 @@ class _HomePageState extends State<HomePage> {
   Future<List<dynamic>> query(String functionName, List<dynamic> args) async {
     DeployedContract contract = await loadContract();
     final ethFunction = contract.function(functionName);
-    final result = await client.call(contract: contract, function: ethFunction, params: [],);
+    final result = await client.call(contract: contract, function: ethFunction, params: [
+
+    ],);
 
     return result;
   }
@@ -94,6 +97,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Crypto App"),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OnBoardingScreen()));
+          }, icon: const Icon(Icons.arrow_forward_ios)),
+        ],
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,

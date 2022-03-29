@@ -39,6 +39,8 @@ dependencies:
   web3dart:
   syncfusion_flutter_datagrid:
   flutter_svg:
+  flutter_screenutil: ^5.3.1
+  iconsax: ^0.0.8
 
 dev_dependencies:
   flutter_test:
@@ -64,7 +66,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/fonts/
+    - assets/images/
+    - assets/assets_nft/
     - assets/abi.json
+    - assets/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -78,6 +84,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+
+  fonts:
+    - family: Dsignes
+      fonts:
+        - asset: assets/fonts/DsignesR.ttf
+        - asset: assets/fonts/DsignesL.ttf
+          weight: 200
+        - asset: assets/fonts/DsignesB.ttf
+          weight: 600
   # fonts:
   #   - family: Schyler
   #     fonts:
