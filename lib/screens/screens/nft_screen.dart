@@ -18,9 +18,9 @@ class NFTScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50.h),
+              SizedBox(height: 50),
               const _AppBar(),
-              SizedBox(height: 32.h),
+              SizedBox(height: 32),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
@@ -31,12 +31,12 @@ class NFTScreen extends StatelessWidget {
                   tag: '1',
                   child: Image.asset(
                     'assets/images/image-1.jpeg',
-                    height: 260.h,
+                    height: 260,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              SizedBox(height: 24.h),
+              SizedBox(height: 24),
               SlideAnimation(
                 intervalStart: 0.4,
                 begin: const Offset(0, 30),
@@ -48,21 +48,21 @@ class NFTScreen extends StatelessWidget {
                       Text(
                         'DAY 74',
                         style: TextStyle(
-                          fontSize: 24.r,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 8),
                       Row(
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             child: Image.asset(
                               'assets/images/profile.jpg',
-                              width: 20.r,
+                              width: 20,
                             ),
                           ),
-                          SizedBox(width: 8.h),
+                          SizedBox(width: 8),
                           const Text(
                             '@Mark Rise',
                             style: TextStyle(
@@ -71,22 +71,22 @@ class NFTScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 8),
                       Text(
                         'Who we were and what we will become are there, they are around us, they are batting, they are resting and they are being watched...More',
                         style: bodyTextStyle,
                       ),
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 8),
                       const Divider(),
-                      SizedBox(height: 8.h),
+                      SizedBox(height: 8),
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
                           child: Image.asset(
                             'assets/images/user.jpeg',
-                            width: 40.r,
-                            height: 40.r,
+                            width: 40,
+                            height: 40,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -94,7 +94,7 @@ class NFTScreen extends StatelessWidget {
                         subtitle: Text(
                           'Merry Rose',
                           style: TextStyle(
-                            fontSize: 16.r,
+                            fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
@@ -102,13 +102,13 @@ class NFTScreen extends StatelessWidget {
                         trailing: Text(
                           '15.97 ETH',
                           style: TextStyle(
-                            fontSize: 16.r,
+                            fontSize: 16,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 16),
                       const Button(),
                     ],
                   ),
@@ -129,8 +129,8 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: 20.w,
-        vertical: 16.h,
+        horizontal: 20,
+        vertical: 16,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
@@ -143,7 +143,7 @@ class Button extends StatelessWidget {
             'Place Bid',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 16.r,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -151,7 +151,7 @@ class Button extends StatelessWidget {
             '20h: 35m: 08s',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18.r,
+              fontSize: 18,
             ),
           ),
         ],
@@ -173,11 +173,11 @@ class _AppBar extends StatelessWidget {
           },
           child: const Icon(Icons.arrow_back),
         ),
-        SizedBox(width: 16.h),
+        SizedBox(width: 16),
         Text(
           'Auctions',
           style: TextStyle(
-            fontSize: 16.r,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -186,7 +186,7 @@ class _AppBar extends StatelessWidget {
           Iconsax.heart5,
           color: Colors.red,
         ),
-        SizedBox(width: 16.h),
+        SizedBox(width: 16),
         const Icon(Iconsax.menu_1),
       ],
     );
