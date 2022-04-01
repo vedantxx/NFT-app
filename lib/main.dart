@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test2/providers/currency_provider.dart';
 import 'package:test2/screens/home_page.dart';
+import 'package:test2/screens/my_onboarding_screen.dart';
 import 'package:test2/widgets/currency_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: HomePage(),
+        home: OnBoardingAnimationExample(),
       ),
     );
   }

@@ -41,6 +41,11 @@ dependencies:
   flutter_svg:
   flutter_screenutil: ^5.3.1
   iconsax: ^0.0.8
+  smooth_page_indicator: ^1.0.0+2
+  onboarding_animation:
+  path:
+  google_fonts: ^2.2.0
+  font_awesome_flutter:
 
 dev_dependencies:
   flutter_test:
@@ -52,7 +57,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-
+  network_image_mock: ^2.0.1
+  mockito: ^5.0.16
+  flutter_launcher_icons:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -68,6 +75,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/
+    - assets/icons/
     - assets/assets_nft/
     - assets/abi.json
     - assets/

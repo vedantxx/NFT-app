@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
     try {
       List<dynamic> result = await query("getBalance", []);
       debugPrint(result.toString());
+      // client.
     } on Exception catch (e) {
       // TODO
       debugPrint(e.toString());
