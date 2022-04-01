@@ -12,6 +12,7 @@ import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/screens/onboarding_screen.dart';
 
 // import '../test2/slide_animation.dart';
+import 'explore_pages/explore_home_page.dart';
 import 'nft_screen.dart';
 import 'onboarding_screen.dart';
 
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late PageController _pageController;
   final List<Widget> _children = [
     const MyNFTHomePage(),
-    const ExplorePage(),
+    const ExploreHomePage(),
     const ExplorePage(),
     const ExplorePage(),
     const ExplorePage(),
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<BottomNavyBarProvider>(context, listen: false);
+    // final provider = Provider.of<BottomNavyBarProvider>(context);
     return Scaffold(
       body: _children[context.watch<BottomNavyBarProvider>().currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -57,33 +58,40 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index){
           setState(() {
             // currentIndex = index;
+            final provider = Provider.of<BottomNavyBarProvider>(context,listen: false);
             debugPrint("Bottom nav changed using provider");
             provider.changePage(index);
           },
           );
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
             icon: BottomIcon(
-              icon: Iconsax.home_15,
-              isActive: true,
+              icon: Iconsax.home,
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 0 ? true : false,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: BottomIcon(icon: Iconsax.discover_1),
+            icon: BottomIcon(
+                icon: Iconsax.discover_1,
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 1 ? true : false,
+            ),
             label: 'Discover',
           ),
           BottomNavigationBarItem(
-            icon: BottomIcon(icon: Iconsax.add_square),
+            icon: BottomIcon(icon: Iconsax.add_square,
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? true : false,),
             label: 'Add',
           ),
           BottomNavigationBarItem(
-            icon: BottomIcon(icon: Iconsax.shop),
+            icon: BottomIcon(icon: Iconsax.shop,
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 3 ? true : false,),
             label: 'Shop',
           ),
           BottomNavigationBarItem(
-            icon: BottomIcon(icon: Iconsax.wallet_3),
+            icon: BottomIcon(icon: Iconsax.wallet_3,
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 4 ? true : false,),
             label: 'Wallet',
           ),
         ],
@@ -102,7 +110,7 @@ class BottomIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon),
+        Icon(icon,color: isActive ? Colors.black : Colors.grey,),
         Divider(
           thickness: 2,
           indent: 25,
