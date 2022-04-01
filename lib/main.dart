@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:test2/providers/bottom_navy_bar_provider.dart';
 import 'package:test2/providers/currency_provider.dart';
 import 'package:test2/screens/home_page.dart';
 import 'package:test2/screens/my_onboarding_screen.dart';
+import 'package:test2/screens/screens/home_screen.dart';
+import 'package:test2/screens/screens/onboarding_screen.dart';
 import 'package:test2/widgets/currency_widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -15,8 +18,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CurrencyProvider(),
+    return MultiProvider(
+      // create: (context) => CurrencyProvider(),
+      providers: [
+        Provider<CurrencyProvider>(create: (_) => CurrencyProvider()),
+        Provider<BottomNavyBarProvider>(create: (_) => BottomNavyBarProvider()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -32,7 +39,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: OnBoardingAnimationExample(),
+        home: OnBoardingScreen(),
       ),
     );
   }

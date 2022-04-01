@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:test2/animations/page_transition.dart';
 import 'package:test2/animations/slide_animation.dart';
+import 'package:test2/providers/bottom_navy_bar_provider.dart';
+import 'package:test2/screens/screens/explore_page.dart';
+import 'package:test2/screens/screens/my_nft_home_page.dart';
 import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/constants.dart';
 // import 'package:test2/screens/onboarding_screen.dart';
@@ -22,6 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
   final double _padding = 24;
 
   late PageController _pageController;
+  final List<Widget> _children = [
+    const MyNFTHomePage(),
+    const ExplorePage(),
+    const ExplorePage(),
+    const ExplorePage(),
+    const ExplorePage(),
+  ];
 
   @override
   void initState() {
@@ -31,136 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<BottomNavyBarProvider>(context, listen: false);
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 35),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: _padding),
-              child: const _AppBar(),
-            ),
-            SizedBox(height: 24),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: _padding),
-              child: const _Header(),
-            ),
-            SizedBox(height: 24),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: _padding),
-              child: const SlideAnimation(child: _CategoryList()),
-            ),
-            SizedBox(height: 24),
-            SlideAnimation(
-              begin: Offset(400, 0),
-              child: SizedBox(
-                height: 500,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            PageTransition(
-                              child: const NFTScreen(),
-                              type: PageTransitionType.fadeIn,
-                            ));
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(right: 20),
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 1, color: Colors.black26),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 12,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    'A. ',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  SizedBox(width: 12),
-                                  Text(
-                                    'DAY 74',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    '@Mark Rise',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Hero(
-                                tag: '$index',
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor,
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                        index % 2 == 0
-                                            ? 'assets/images/image-0.jpg'
-                                            : 'assets/images/image-1.jpeg',
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 12),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 12,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: const <Widget>[
-                                  EventStat(
-                                    title: '20h: 25m: 08s',
-                                    subtitle: 'Remaining Time',
-                                  ),
-                                  EventStat(
-                                    title: '15.97 ETH',
-                                    subtitle: 'Highest Bid',
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: _children[context.watch<BottomNavyBarProvider>().currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         iconSize: 22,
@@ -169,6 +53,15 @@ class _HomeScreenState extends State<HomeScreen> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
+        currentIndex: context.watch<BottomNavyBarProvider>().currentIndex,
+        onTap: (index){
+          setState(() {
+            // currentIndex = index;
+            debugPrint("Bottom nav changed using provider");
+            provider.changePage(index);
+          },
+          );
+        },
         items: const [
           BottomNavigationBarItem(
             icon: BottomIcon(
