@@ -7,12 +7,12 @@ import 'package:test2/models/Post.dart';
 import 'package:test2/models/User.dart';
 
 class Sample {
-  static User mohammad = User(
-    name: "Mohammad Rahmani",
-    username: "@afgprogrammer",
+  static User vedant = User(
+    name: "Vedant Jadhav",
+    username: "@venomxx",
     followers: 400,
     following: 190,
-    profilePicture: "assets/users/mohammad.jpg",
+    profilePicture: "assets/users/vedant.jpg",
     collocation: [
       Collocation(
         name: "Photography",
@@ -24,7 +24,7 @@ class Sample {
         thumbnail: "assets/photos/one.jpg",
         posts: [
           Post(
-            location: "Kabul, Afghanistan",
+            location: "Mumbai, India",
             dateAgo: "3 min ago",
             photos: [
               'assets/photos/one.jpg',
@@ -33,7 +33,7 @@ class Sample {
             ]
           ),
           Post(
-            location: "Herat, Afghanistan",
+            location: "Delhi, India",
             dateAgo: "2 week ago",
             photos: [
               'assets/photos/six.jpg',
@@ -53,7 +53,7 @@ class Sample {
         thumbnail: "assets/photos/five.jpg",
         posts: [
           Post(
-            location: "Kabul, Afghanistan",
+            location: "Paris, France",
             dateAgo: "3 min ago",
             photos: [
               'assets/photos/one.jpg',
@@ -62,7 +62,7 @@ class Sample {
             ]
           ),
           Post(
-            location: "Herat, Afghanistan",
+            location: "LA, USA",
             dateAgo: "2 week ago",
             photos: [
               'assets/photos/six.jpg',
@@ -75,12 +75,12 @@ class Sample {
     ]
   );
 
-  static User yasir = User(
-    name: "Yasir Ahmad",
-    username: "@yasirnoori.yn",
+  static User virat = User(
+    name: "Virat Kohli",
+    username: "@iamviratkohli",
     followers: 400,
     following: 190,
-    profilePicture: "assets/users/yasir.jpg",
+    profilePicture: "assets/users/virat.jpg",
     collocation: [
       Collocation(
         name: "Photography",
@@ -92,7 +92,7 @@ class Sample {
         thumbnail: "assets/photos/two.jpg",
         posts: [
           Post(
-            location: "Kabul, Afghanistan",
+            location: "Banglore, India",
             dateAgo: "3 min ago",
             photos: [
               'assets/photos/five.jpg',
@@ -101,7 +101,7 @@ class Sample {
             ]
           ),
           Post(
-            location: "Herat, Afghanistan",
+            location: "Lords, London, UK",
             dateAgo: "2 week ago",
             photos: [
               'assets/photos/six.jpg',
@@ -115,8 +115,8 @@ class Sample {
   );
 
   static Post postOne =  Post(
-    user: mohammad,
-    location: "Kabul, Afghanistan",
+    user: vedant,
+    location: "Mumbai, India",
     dateAgo: "3 min ago",
     photos: [
       'assets/photos/one.jpg',
@@ -133,8 +133,8 @@ class Sample {
   );
 
   static Post postTwo =  Post(
-     user: yasir,
-    location: "Kabul, Afghanistan",
+     user: virat,
+    location: "Delhi, India",
     dateAgo: "3 min ago",
     photos: [
       'assets/photos/four.jpg',

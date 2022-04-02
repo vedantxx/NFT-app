@@ -110,7 +110,7 @@ class _SingleUserState extends State<SingleUser> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text("Collotion", style: TextStyle(
+                            Text("Collection", style: TextStyle(
                               color: Colorsys.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 15

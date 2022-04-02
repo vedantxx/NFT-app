@@ -28,24 +28,24 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 35),
+            const SizedBox(height: 35),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: const _AppBar(),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: const _Header(),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: const SlideAnimation(child: _CategoryList()),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             SlideAnimation(
-              begin: Offset(400, 0),
+              begin: const Offset(400, 0),
               child: SizedBox(
                 height: 500,
                 child: PageView.builder(

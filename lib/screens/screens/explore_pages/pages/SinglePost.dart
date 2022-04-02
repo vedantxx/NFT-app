@@ -107,7 +107,7 @@ class SinglePost extends StatelessWidget {
                     children: <Widget>[
                       Image.asset('assets/icons/location.png', scale: 2.2),
                       const SizedBox(width: 5,),
-                      Text("Kabul, Afghanistan", style: TextStyle(
+                      Text("Mumbai, India", style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: Colorsys.grey

@@ -12,6 +12,7 @@ import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/screens/onboarding_screen.dart';
 
 // import '../test2/slide_animation.dart';
+import 'crypto_dash/pages/home/cyrpto_dash_homepage.dart';
 import 'explore_pages/explore_home_page.dart';
 import 'nft_screen.dart';
 import 'onboarding_screen.dart';
@@ -31,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const MyNFTHomePage(),
     const ExploreHomePage(),
     const ExplorePage(),
-    const ExplorePage(),
+    const CryptoDashHomePage(),
     const ExplorePage(),
   ];
 
