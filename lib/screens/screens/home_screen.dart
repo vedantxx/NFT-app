@@ -31,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = [
     const MyNFTHomePage(),
     const ExploreHomePage(),
-    const ExplorePage(),
+    // const ExplorePage(),
     const CryptoDashHomePage(),
-    const ExplorePage(),
+    // const ExplorePage(),
   ];
 
   @override
@@ -50,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         iconSize: 22,
-        selectedItemColor: Colors.black,
+        backgroundColor: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? Colors.black : Colors.white,
+        selectedItemColor: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? Colors.greenAccent : Colors.black,
         unselectedItemColor: Colors.black,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -80,21 +81,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             label: 'Discover',
           ),
-          BottomNavigationBarItem(
-            icon: BottomIcon(icon: Iconsax.add_square,
-              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? true : false,),
-            label: 'Add',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: BottomIcon(icon: Iconsax.add_square,
+          //     isActive: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? true : false,),
+          //   label: 'Add',
+          // ),
           BottomNavigationBarItem(
             icon: BottomIcon(icon: Iconsax.shop,
-              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 3 ? true : false,),
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? true : false,),
             label: 'Shop',
           ),
-          BottomNavigationBarItem(
-            icon: BottomIcon(icon: Iconsax.wallet_3,
-              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 4 ? true : false,),
-            label: 'Wallet',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: BottomIcon(icon: Iconsax.wallet_3,
+          //     isActive: context.watch<BottomNavyBarProvider>().currentIndex == 4 ? true : false,),
+          //   label: 'Wallet',
+          // ),
         ],
       ),
     );
@@ -111,7 +112,7 @@ class BottomIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon,color: isActive ? Colors.black : Colors.grey,),
+        Icon(icon,color: isActive ? context.watch<BottomNavyBarProvider>().currentIndex == 2 ? Colors.greenAccent : Colors.black : Colors.grey,),
         Divider(
           thickness: 2,
           indent: 25,
