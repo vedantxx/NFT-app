@@ -53,10 +53,12 @@ class OneDay {
 
 class OneHour {
   final double? price_change;
-  OneHour({this.price_change});
+  final double? price_change_pct;
+  OneHour({this.price_change,this.price_change_pct});
   factory OneHour.fromJson(Map<String,dynamic> json){
     return OneHour(
       price_change: double.parse(json["price_change"]),
+      price_change_pct: double.parse(json["price_change_pct"])
     );
   }
 }

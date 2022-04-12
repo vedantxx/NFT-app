@@ -85,6 +85,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/photos/
+    - assets/nftpro/
     - assets/users/
     - assets/assets_nft/
     - assets/abi.json

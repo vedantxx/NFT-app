@@ -119,16 +119,16 @@ class Sample {
     location: "Mumbai, India",
     dateAgo: "3 min ago",
     photos: [
-      'assets/photos/one.jpg',
-      'assets/photos/two.jpg',
-      'assets/photos/three.jpg'
+      'assets/nftpro/one.png',
+      'assets/nftpro/two.jpeg',
+      'assets/nftpro/three.png'
     ],
     relatedPhotos: [
-      'assets/photos/four.jpg',
-      'assets/photos/five.jpg',
-      'assets/photos/six.jpg',
-      'assets/photos/seven.jpg',
-      'assets/photos/eight.jpg'
+      'assets/nftpro/four.png',
+      'assets/nftpro/five.jpg',
+      'assets/nftpro/six.png',
+      'assets/nftpro/seven.jpg',
+      'assets/nftpro/eight.jfif'
     ]
   );
 
@@ -137,16 +137,17 @@ class Sample {
     location: "Delhi, India",
     dateAgo: "3 min ago",
     photos: [
-      'assets/photos/four.jpg',
-      'assets/photos/five.jpg',
-      'assets/photos/six.jpg',
+      'assets/nftpro/ten.png',
+      'assets/nftpro/eleven.jfif',
+      'assets/nftpro/twelve.jpg',
     ],
     relatedPhotos: [
-      'assets/photos/one.jpg',
-      'assets/photos/two.jpg',
-      'assets/photos/three.jpg',
-      'assets/photos/four.jpg',
-      'assets/photos/five.jpg'
+      // 'assets/nftpro/thirteen.jfif',
+      'assets/nftpro/fourteen.png',
+      'assets/nftpro/fifteen.png',
+      'assets/nftpro/sixteen.png',
+      'assets/nftpro/nineteen.png',
+      'assets/nftpro/seventeen.jfif'
     ]
   );
 }
