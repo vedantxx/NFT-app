@@ -43,10 +43,12 @@ class Currency {
 
 class OneDay {
   final double? price_change;
-  OneDay({this.price_change});
+  final double? price_change_pct;
+  OneDay({this.price_change,this.price_change_pct});
   factory OneDay.fromJson(Map<String,dynamic> json){
     return OneDay(
       price_change: double.parse(json["price_change"]),
+        price_change_pct: double.parse(json["price_change_pct"]),
     );
   }
 }
