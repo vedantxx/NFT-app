@@ -6,8 +6,8 @@ class Currency {
   final String? logoUrl;
   final String? name;
   final double? price;
-  final double? oneHourChange;
-  final double? oneDayChange;
+  final OneHour? oneHourChange;
+  final OneDay? oneDayChange;
   final double? marketCap;
   final int? rank;
   final int? rankDelta;
@@ -30,11 +30,33 @@ class Currency {
       logoUrl: json['logo_url'],
       name: json['name'],
       price: double.parse(json['price']),
+      oneDayChange: OneDay.fromJson(json["1d"]),
+      // oneHourChange: OneHour.fromJson(json["1h"]),
       // oneDayChange: double.parse(json['1d']['price_change_pct']),
       // oneHourChange:double.parse( json['1h']['price_change_pct']),
       marketCap: double.parse(json['market_cap']),
       rank: int.parse(json['rank']),
       rankDelta: int.parse(json['rank_delta']),
+    );
+  }
+}
+
+class OneDay {
+  final double? price_change;
+  OneDay({this.price_change});
+  factory OneDay.fromJson(Map<String,dynamic> json){
+    return OneDay(
+      price_change: double.parse(json["price_change"]),
+    );
+  }
+}
+
+class OneHour {
+  final double? price_change;
+  OneHour({this.price_change});
+  factory OneHour.fromJson(Map<String,dynamic> json){
+    return OneHour(
+      price_change: double.parse(json["price_change"]),
     );
   }
 }
@@ -52,9 +74,9 @@ class CurrencyComparable{
       case CurrencyColumn.rank:
         return self.rank!.compareTo(other.rank!);
       case CurrencyColumn.oneDChange:
-        return self.oneDayChange!.compareTo(other.oneDayChange!);
-      case CurrencyColumn.oneHChange:
-        return self.oneHourChange!.compareTo(other.oneHourChange!);
+        return self.oneDayChange!.price_change!.compareTo(other.oneDayChange!.price_change!);
+      // case CurrencyColumn.oneHChange:
+      //   return self.oneHourChange!.price_change!.compareTo(other.oneHourChange!.price_change!);
       case CurrencyColumn.marketCap:
         return self.marketCap!.compareTo(other.marketCap!);
       case CurrencyColumn.price:

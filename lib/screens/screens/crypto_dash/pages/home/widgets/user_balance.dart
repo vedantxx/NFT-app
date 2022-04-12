@@ -1,7 +1,5 @@
-// import 'package:crypto_dashboard/pages/home/widgets/coin_card.dart';
-// import 'package:crypto_dashboardo_dashboard/utils/static_data.dart';
 import 'package:flutter/material.dart';
-
+import 'package:test2/screens/home_page.dart';
 import '../../../utils/static_data.dart';
 import 'coin_card.dart';
 
@@ -13,6 +11,7 @@ class UserBalance extends StatelessWidget {
     ThemeData themeData = Theme.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      // color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -26,23 +25,31 @@ class UserBalance extends StatelessWidget {
                   fontSize: 16.0,
                 ),
               ),
-              Text(
-                "Total amount \$378.15",
-                style: themeData.textTheme.caption,
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage()));
+                },
+                child: const Text("View all",style: TextStyle(
+                  color: Colors.greenAccent,
+                ),),
               ),
+              // Text(
+              //   "Total amount \$378.15",
+              //   style: themeData.textTheme.caption,
+              // ),
             ],
           ),
           const SizedBox(height: 15.0),
           ListView.separated(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               return CoinCard(
                 coin: StaticData.userCoins[index],
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
+              return const SizedBox(
                 height: 15.0,
               );
             },

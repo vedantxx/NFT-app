@@ -27,6 +27,7 @@ class _CurrenciesWidgetState extends State<CurrenciesWidget> {
       return SfDataGrid(
         allowSorting: true,
         frozenColumnsCount: 1,
+        gridLinesVisibility: GridLinesVisibility.both,
         columns: buildGridColumns(),
         source: currencyDataSource,
         defaultColumnWidth: 120,
@@ -41,8 +42,8 @@ class _CurrenciesWidgetState extends State<CurrenciesWidget> {
     GridColumn(columnName: CurrencyColumn.rank.toString(), label: buildLabel("Rank")),
     GridColumn(columnName: CurrencyColumn.name.toString(), label: buildLabel("Name")),
     GridColumn(columnName: CurrencyColumn.price.toString(), label: buildLabel("Price")),
-    GridColumn(columnName: CurrencyColumn.oneDChange.toString(), label: buildLabel("ID")),
-    GridColumn(columnName: CurrencyColumn.oneHChange.toString(), label: buildLabel("ID")),
+    // GridColumn(columnName: CurrencyColumn.oneDChange.toString(), label: buildLabel("ID")),
+    GridColumn(columnName: CurrencyColumn.oneDChange.toString(), label: buildLabel("1D")),
     GridColumn(columnName: CurrencyColumn.marketCap.toString(), label: buildLabel("marketCap")),
 
 
@@ -53,6 +54,6 @@ class _CurrenciesWidgetState extends State<CurrenciesWidget> {
 
   Widget buildLabel(String text) => Container(
     alignment: Alignment.center,
-      child: Text(text),
+      child: Text(text,style: const TextStyle(color: Colors.white),),
   );
 }

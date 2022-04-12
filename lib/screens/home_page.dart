@@ -98,12 +98,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Crypto App"),
-        actions: [
-          IconButton(onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OnBoardingScreen()));
-          }, icon: const Icon(Icons.arrow_forward_ios)),
-        ],
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        // actions: [
+        //   IconButton(onPressed: (){
+        //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => OnBoardingScreen()));
+        //   }, icon: const Icon(Icons.arrow_forward_ios)),
+        // ],
       ),
+      backgroundColor: Colors.black,
       body: Container(
         height: MediaQuery.of(context).size.height,
           // width: MediaQuery.of(context).size.width,

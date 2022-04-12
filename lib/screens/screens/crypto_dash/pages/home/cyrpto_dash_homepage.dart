@@ -23,44 +23,42 @@ class CryptoDashHomePage extends StatelessWidget {
         centerTitle: true,
         title: const Text("My Money"),
         backgroundColor: Colors.black,
-        actions: [
+        actions: const [
           NotificationBell(),
         ],
       ),
       backgroundColor: Colors.black,
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: const [
-              SizedBox(
-                height: 25.0,
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            SizedBox(
+              height: 25.0,
+            ),
+            SlideAnimation(child: AccountBalance()),
+            SizedBox(
+              height: 40.0,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(
+                color: Color.fromRGBO(97, 99, 119, 1),
               ),
-              SlideAnimation(child: AccountBalance()),
-              SizedBox(
-                height: 40.0,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Divider(
-                  color: Color.fromRGBO(97, 99, 119, 1),
-                ),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              SlideAnimation(
-                begin: Offset(600, 0),
-                child: UserBalance(),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              SlideAnimation(begin: Offset(1000, 0),child: OtherCoins()),
-              SizedBox(
-                height: 100.0,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            SlideAnimation(
+              begin: Offset(600, 0),
+              child: UserBalance(),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            SlideAnimation(begin: Offset(1000, 0),child: OtherCoins()),
+            SizedBox(
+              height: 100.0,
+            ),
+          ],
         ),
       ),
     );
