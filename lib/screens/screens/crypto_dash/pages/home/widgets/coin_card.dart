@@ -9,19 +9,47 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 // import 'package:flutter/material.dart.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test2/apis/crypto_api.dart';
+import 'package:test2/models/currency_model.dart';
+import 'package:test2/providers/currency_provider.dart';
 // import 'package:flutter_icons/flutter_icons.dart';
 import '../../../../../../models/coin.dart';
 import '../../../utils/constants.dart';
 import '../../coin_detail/coin_detail.dart';
 
-class CoinCard extends StatelessWidget {
+class CoinCard extends StatefulWidget {
   final Coin? coin;
-  CoinCard({this.coin});
+  final int index;
+  const CoinCard({Key? key, this.coin,required this.index}) : super(key: key);
+
+  @override
+  State<CoinCard> createState() => _CoinCardState();
+}
+
+class _CoinCardState extends State<CoinCard> {
+
+  late List<Currency> currencies = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // myInitState();
+  }
+
+  // Future<void> myInitState() async {
+  //   currencies = await CryptoApi.getCurrencies();
+  // }
+
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    final provider =  Provider.of<CurrencyProvider>(context);
+    final currencyDataSource = provider.currencies;
+    debugPrint(currencyDataSource.toString());
     return Slidable(
-      actionPane: SlidableDrawerActionPane(),
+      actionPane: const SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
       child: GestureDetector(
         onTap: () {
@@ -29,7 +57,7 @@ class CoinCard extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return CoinDetail(coin: this.coin);
+                return CoinDetail(coin: widget.coin);
               },
             ),
           );
@@ -45,7 +73,7 @@ class CoinCard extends StatelessWidget {
               Container(
                 width: 40.0,
                 child: Image.asset(
-                  coin!.getImagePath(),
+                  widget.coin!.getImagePath(),
                 ),
               ),
               const SizedBox(
@@ -56,7 +84,7 @@ class CoinCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${coin.toString()} (${coin!.getCoinAbbr()})",
+                    "${widget.coin.toString()} (${widget.coin!.getCoinAbbr()})",
                     style: const TextStyle(
                       color: Colors.white,
                     ),
@@ -65,7 +93,7 @@ class CoinCard extends StatelessWidget {
                     height: 5.0,
                   ),
                   Text(
-                    "${coin!.balance}",
+                    "${widget.coin!.balance}",
                     style: themeData.textTheme.caption!.copyWith(fontSize: 14.0),
                   ),
                 ],
@@ -75,33 +103,37 @@ class CoinCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  // currencies[0].price != null ?
                   Text(
-                    "\$${coin!.currentPrice}",
+                    // "${currencies[0].price}",
+                    "${currencyDataSource[widget.index].price}",
+                    // "\$${widget.coin!.currentPrice}",
                     style: const TextStyle(
                       color: Colors.white,
                     ),
-                  ),
+                  ) ,
+                      // : const Text("Loading",style: TextStyle(color: Colors.grey),),
                   const SizedBox(
                     height: 5.0,
                   ),
                   Row(
                     children: [
                       Text(
-                        getCoinProgress(coin!),
+                        getCoinProgress(widget.coin!),
                         style: TextStyle(
-                          color: coin!.trend == Trend.UP
+                          color: widget.coin!.trend == Trend.UP
                               ? kSuccessColor
                               : kDangerColor,
                           fontSize: 13.0,
                         ),
                       ),
                       Icon(
-                        coin!.trend == Trend.UP
+                        widget.coin!.trend == Trend.UP
                             // ? FlutterIcons.caret_up_faw
                             // : FlutterIcons.caret_down_faw,
                         ? Icons.arrow_drop_up : Icons.arrow_drop_down,
                         size: 14.0,
-                        color: coin!.trend == Trend.UP
+                        color: widget.coin!.trend == Trend.UP
                             ? kSuccessColor
                             : kDangerColor,
                       )

@@ -34,6 +34,7 @@ class OtherCoins extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return CoinCard(
                 coin: StaticData.otherCoins[index],
+                index: index,
               );
             },
             separatorBuilder: (BuildContext context, int index) {

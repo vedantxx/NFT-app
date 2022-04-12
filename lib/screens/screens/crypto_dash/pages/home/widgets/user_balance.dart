@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:test2/apis/crypto_api.dart';
+import 'package:test2/models/currency_model.dart';
 import 'package:test2/screens/home_page.dart';
 import '../../../utils/static_data.dart';
 import 'coin_card.dart';
 
-class UserBalance extends StatelessWidget {
+class UserBalance extends StatefulWidget {
   const UserBalance({Key? key}) : super(key: key);
+
+  @override
+  State<UserBalance> createState() => _UserBalanceState();
+}
+
+class _UserBalanceState extends State<UserBalance> {
+
+  List<Currency> currencies = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // myInitState();
+  }
+
+  // Future<void> myInitState() async {
+  //   currencies = await CryptoApi.getCurrencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +67,7 @@ class UserBalance extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return CoinCard(
                 coin: StaticData.userCoins[index],
+                index: index,
               );
             },
             separatorBuilder: (BuildContext context, int index) {
@@ -59,4 +81,6 @@ class UserBalance extends StatelessWidget {
       ),
     );
   }
+
+
 }

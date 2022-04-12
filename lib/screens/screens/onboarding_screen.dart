@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 import 'package:test2/animations/animations.dart';
 import 'package:test2/animations/fade_animation.dart';
 import 'package:test2/animations/slide_animation.dart';
+import 'package:test2/providers/currency_provider.dart';
 import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/constants.dart';
 
@@ -22,6 +24,8 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider =  Provider.of<CurrencyProvider>(context);
+    final currencyDataSource = provider.currencies;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -43,7 +47,7 @@ class OnBoardingScreen extends StatelessWidget {
                       'assets/images/flash.svg',
                     ),
                     SizedBox(width: 8),
-                    Text(
+                    const Text(
                       'Started',
                       style: TextStyle(
                         fontSize: 12,
@@ -62,7 +66,7 @@ class OnBoardingScreen extends StatelessWidget {
                   intervalEnd: 0.6,
                   child: RichText(
                     text: TextSpan(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Dsignes',
@@ -74,7 +78,7 @@ class OnBoardingScreen extends StatelessWidget {
                           text: 'Discover ',
                           style: _headingStyle,
                         ),
-                        TextSpan(
+                        const TextSpan(
                           text: 'Rare \nCollections ',
                         ),
                         TextSpan(
@@ -95,7 +99,7 @@ class OnBoardingScreen extends StatelessWidget {
                 child: FadeAnimation(
                   intervalEnd: 0.6,
                   child: Row(
-                    children: <Widget>[
+                    children: const <Widget>[
                       Text(
                         'Art & ',
                         style: TextStyle(
@@ -106,7 +110,7 @@ class OnBoardingScreen extends StatelessWidget {
                           height: 1.3,
                         ),
                       ),
-                      const ColoredText(text: 'NFTs'),
+                      ColoredText(text: 'NFTs'),
                     ],
                   ),
                 ),
