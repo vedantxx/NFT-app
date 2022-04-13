@@ -146,8 +146,9 @@ class Sample {
       'assets/nftpro/fourteen.png',
       'assets/nftpro/fifteen.png',
       'assets/nftpro/sixteen.png',
-      'assets/nftpro/nineteen.png',
       'assets/nftpro/seventeen.jfif'
+      'assets/nftpro/nineteen.png',
+
     ]
   );
 }

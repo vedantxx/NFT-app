@@ -50,18 +50,20 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                 height: 500,
                 child: PageView.builder(
                   controller: _pageController,
+                  itemCount: 2,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(
                             context,
                             PageTransition(
-                              child: const NFTScreen(),
+                              child: NFTScreen(heroTag: index.toString(),
+                                imgUrl: imgUrls[index],),
                               type: PageTransitionType.fadeIn,
                             ));
                       },
                       child: Container(
-                        margin: EdgeInsets.only(right: 20),
+                        margin: const EdgeInsets.only(right: 20),
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           border: Border.all(width: 1, color: Colors.black26),
@@ -112,7 +114,7 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                                     image: DecorationImage(
                                       image: AssetImage(
                                         index % 2 == 0
-                                            ? 'assets/images/image-0.jpg'
+                                            ? 'assets/images/image_0.jpg'
                                             : 'assets/images/image-1.jpeg',
                                       ),
                                       fit: BoxFit.cover,
@@ -242,15 +244,15 @@ class _Header extends StatelessWidget {
               'Live',
               style: bodyTextStyle,
             ),
-            SizedBox(height: 8),
-            Text(
+            const SizedBox(height: 8),
+            const Text(
               'Auctions',
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 2),
+            const SizedBox(height: 2),
             Text(
               'Enjoy! The latest hot acutions',
               style: bodyTextStyle,

@@ -6,9 +6,15 @@ import 'package:test2/animations/slide_animation.dart';
 import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/constants.dart';
 
-class NFTScreen extends StatelessWidget {
-  const NFTScreen({Key? key}) : super(key: key);
+class NFTScreen extends StatefulWidget {
+  final String heroTag,imgUrl;
+  const NFTScreen({Key? key,required this.heroTag,required this.imgUrl}) : super(key: key);
 
+  @override
+  State<NFTScreen> createState() => _NFTScreenState();
+}
+
+class _NFTScreenState extends State<NFTScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +24,9 @@ class NFTScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               const _AppBar(),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(12),
@@ -28,15 +34,15 @@ class NFTScreen extends StatelessWidget {
                   border: Border.all(width: 1, color: Colors.black26),
                 ),
                 child: Hero(
-                  tag: '1',
+                  tag: widget.heroTag,
                   child: Image.asset(
-                    'assets/images/image-1.jpeg',
+                    widget.imgUrl,
                     height: 260,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               SlideAnimation(
                 intervalStart: 0.4,
                 begin: const Offset(0, 30),
@@ -45,14 +51,14 @@ class NFTScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'DAY 74',
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           ClipRRect(
@@ -128,7 +134,7 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 16,
       ),
@@ -138,7 +144,7 @@ class Button extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
+        children: const <Widget>[
           Text(
             'Place Bid',
             style: TextStyle(
@@ -174,7 +180,7 @@ class _AppBar extends StatelessWidget {
           child: const Icon(Icons.arrow_back),
         ),
         SizedBox(width: 16),
-        Text(
+        const Text(
           'Auctions',
           style: TextStyle(
             fontSize: 16,
@@ -186,7 +192,7 @@ class _AppBar extends StatelessWidget {
           Iconsax.heart5,
           color: Colors.red,
         ),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         const Icon(Iconsax.menu_1),
       ],
     );

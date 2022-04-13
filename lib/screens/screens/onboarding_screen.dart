@@ -288,7 +288,7 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       'A.',
       style: TextStyle(
         fontSize: 26,

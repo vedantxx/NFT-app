@@ -1,19 +1,28 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:test2/animations/animations.dart';
 import 'package:test2/models/Post.dart';
+import 'package:test2/screens/screens/nft_screen.dart';
 
+import '../../../../utils/constants_nft.dart';
 import '../helper/Colorsys.dart';
 // import 'package:flutter_photography/data/Sample.dart';
 // import 'package:flutter_photography/helper/Colorsys.dart';
 // import 'package:flutter_photography/models/Post.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
-class SinglePost extends StatelessWidget {
+class SinglePost extends StatefulWidget {
   final Post? post;
   final String? image;
+  final String heroTag;
+  final bool isFirst;
+  const SinglePost({Key? key, this.post, this.image,required this.heroTag,required this.isFirst}) : super(key: key);
 
-  const SinglePost({Key? key, this.post, this.image}) : super(key: key);
+  @override
+  State<SinglePost> createState() => _SinglePostState();
+}
 
+class _SinglePostState extends State<SinglePost> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -22,81 +31,92 @@ class SinglePost extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.only(top: 70, bottom: 20, right: 20, left: 20,),
-              height: height / 2,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                    context,
+                    PageTransition(
+                      child: NFTScreen(heroTag: widget.heroTag,
+                        imgUrl: imgUrls[int.parse(widget.heroTag)],),
+                      type: PageTransitionType.fadeIn,
+                    ));
+              },
+              child: Container(
+                padding: const EdgeInsets.only(top: 70, bottom: 20, right: 20, left: 20,),
+                height: height / 2,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20)
+                  ),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage(widget.image!)
+                  )
                 ),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(image!)
-                )
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: ClipRect(
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                        child: Container(
-                          width: 30.0,
-                          height: 30.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: Colors.black.withOpacity(0.2)
-                          ),
-                          child: const Center(
-                            child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 18,),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: ClipRect(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Container(
+                            width: 30.0,
+                            height: 30.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.black.withOpacity(0.2)
+                            ),
+                            child: const Center(
+                              child: Icon(Icons.arrow_back_ios, color: Colors.white, size: 18,),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          CircleAvatar(
-                            maxRadius: 25,
-                            backgroundImage: AssetImage(post!.user!.profilePicture.toString()),
-                          ),
-                          const SizedBox(width: 10,),
-                          Text(post!.user!.name.toString(), style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600
-                          ),)
-                        ],
-                      ),
-                      ClipRect(
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: Container(
-                            width: 32.0,
-                            height: 32.0,
-                            padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: Colors.grey[600]!.withOpacity(0.1)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              maxRadius: 25,
+                              backgroundImage: AssetImage(widget.post!.user!.profilePicture.toString()),
                             ),
-                            child: Center(
-                              child: Image.asset('assets/icons/download.png')
+                            const SizedBox(width: 10,),
+                            Text(widget.post!.user!.name.toString(), style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600
+                            ),)
+                          ],
+                        ),
+                        ClipRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                            child: Container(
+                              width: 32.0,
+                              height: 32.0,
+                              padding: const EdgeInsets.all(7),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: Colors.grey[600]!.withOpacity(0.1)
+                              ),
+                              child: Center(
+                                child: Image.asset('assets/icons/download.png')
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -114,7 +134,13 @@ class SinglePost extends StatelessWidget {
                       ),)
                     ],
                   ),
-                  makeRelatedPhotos(post!)
+                  SlideAnimation(
+                    intervalStart: 0.4,
+                    begin: const Offset(0, 30),
+                    child: FadeAnimation(
+                        intervalStart: 0.4,
+                        child: makeRelatedPhotos(widget.post!,widget.isFirst)),
+                  )
                 ],
               ),
             )
@@ -124,7 +150,7 @@ class SinglePost extends StatelessWidget {
     );
   }
 
-  Widget makeRelatedPhotos(Post post) {
+  Widget makeRelatedPhotos(Post post,bool isFirst) {
     return StaggeredGridView.countBuilder(
       crossAxisCount: 4,
       itemCount: post.relatedPhotos!.length,
@@ -134,14 +160,28 @@ class SinglePost extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(post.relatedPhotos![index])
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                  context,
+                  PageTransition(
+                    child: NFTScreen(heroTag: isFirst ? (index + 5).toString() : (index + 14).toString(),
+                      imgUrl: imgUrls[isFirst ? (index + 5) : (index + 14)],),
+                    type: PageTransitionType.fadeIn,
+                  ));
+            },
+            child: Hero(
+              tag: isFirst ? (index + 5).toString() : (index + 14).toString(),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(post.relatedPhotos![index])
+                    ),
+                    color: Colors.green
                 ),
-                color: Colors.green
+              ),
             ),
           );
       },

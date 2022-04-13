@@ -24,9 +24,14 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colorsys.lightGrey,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colorsys.darkGray,), onPressed: () {  },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.menu, color: Colorsys.darkGray,), onPressed: () {  },
+        // ),
+        actions: [
+          IconButton(onPressed: (){
+
+          }, icon: const Icon(Icons.add,color: Colors.black,))
+        ],
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -94,8 +99,8 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                       ),
                     ),
                     const SizedBox(height: 30,),
-                    makePost(Sample.postOne),
-                    makePost(Sample.postTwo),
+                    makePost(Sample.postOne,true),
+                    makePost(Sample.postTwo,false),
                   ],
                 ),
               ),
@@ -106,7 +111,7 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
     );
   }
 
-  Widget makePost(Post post) {
+  Widget makePost(Post post,bool isFirst) {
     return Container(
       margin: const EdgeInsets.only(bottom: 30),
       child: Column(
@@ -168,70 +173,78 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                   return InkWell(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => SinglePost(post: post, image: post.photos![index],)
+                          builder: (context) => SinglePost(
+                            post: post,
+                            image: post.photos![index],
+                            isFirst: isFirst,
+                            heroTag: isFirst ? (index + 2).toString() : (index + 11).toString(),
+                          )
                       ));
                     },
-                    child: AspectRatio(
-                      aspectRatio: 1.2 / 1,
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(post.photos![index]),
-                                fit: BoxFit.cover
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.orange
-                        ),
-                        child: Stack(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: Container(
-                                margin: const EdgeInsets.all(20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: <Widget>[
-                                    ClipRect(
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                        child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(4),
-                                              color: Colors.grey[600]!.withOpacity(0.1)
-                                          ),
-                                          child: Center(
-                                              child: Image.asset('assets/icons/link.png')
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10,),
-                                    ClipRect(
-                                      child: BackdropFilter(
-                                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                                        child: Container(
-                                          width: 30.0,
-                                          height: 30.0,
-                                          padding: const EdgeInsets.all(5),
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(4),
-                                              color: Colors.grey[600]!.withOpacity(0.1)
-                                          ),
-                                          child: Center(
-                                              child: Image.asset('assets/icons/heart.png')
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                    child: Hero(
+                      tag: isFirst ? (index + 2).toString() : (index + 11).toString(),
+                      child: AspectRatio(
+                        aspectRatio: 1.2 / 1,
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(post.photos![index]),
+                                  fit: BoxFit.cover
                               ),
-                            )
-                          ],
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.orange
+                          ),
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Container(
+                                  margin: const EdgeInsets.all(20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      ClipRect(
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                          child: Container(
+                                            width: 30.0,
+                                            height: 30.0,
+                                            padding: const EdgeInsets.all(5),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(4),
+                                                color: Colors.grey[600]!.withOpacity(0.1)
+                                            ),
+                                            child: Center(
+                                                child: Image.asset('assets/icons/link.png')
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10,),
+                                      ClipRect(
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                                          child: Container(
+                                            width: 30.0,
+                                            height: 30.0,
+                                            padding: const EdgeInsets.all(5),
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(4),
+                                                color: Colors.grey[600]!.withOpacity(0.1)
+                                            ),
+                                            child: Center(
+                                                child: Image.asset('assets/icons/heart.png')
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
