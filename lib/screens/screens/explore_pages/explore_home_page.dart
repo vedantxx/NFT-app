@@ -312,12 +312,12 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                             post: post,
                             image: post.photos![index],
                             isFirst: isFirst,
-                            heroTag: isFirst ? (index + 2).toString() : (index + 11).toString(),
+                            heroTag: isFirst ? (index + 4).toString() : (index + 13).toString(),
                           )
                       ));
                     },
                     child: Hero(
-                      tag: isFirst ? (index + 2).toString() : (index + 11).toString(),
+                      tag: isFirst ? (index + 4).toString() : (index + 13).toString(),
                       child: AspectRatio(
                         aspectRatio: 1.2 / 1,
                         child: Container(

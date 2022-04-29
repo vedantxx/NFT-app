@@ -165,13 +165,13 @@ class _SinglePostState extends State<SinglePost> {
               Navigator.push(
                   context,
                   PageTransition(
-                    child: NFTScreen(heroTag: isFirst ? (index + 5).toString() : (index + 14).toString(),
-                      imgUrl: imgUrls[isFirst ? (index + 5) : (index + 14)],),
+                    child: NFTScreen(heroTag: isFirst ? (index + 7).toString() : (index + 16).toString(),
+                      imgUrl: imgUrls[isFirst ? (index + 7) : (index + 16)],),
                     type: PageTransitionType.fadeIn,
                   ));
             },
             child: Hero(
-              tag: isFirst ? (index + 5).toString() : (index + 14).toString(),
+              tag: isFirst ? (index + 7).toString() : (index + 16).toString(),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
