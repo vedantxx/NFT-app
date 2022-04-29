@@ -47,7 +47,7 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
             SlideAnimation(
               begin: const Offset(400, 0),
               child: SizedBox(
-                height: 500,
+                height: 560,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: 2,
@@ -88,20 +88,20 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                                     ),
                                   ),
                                   SizedBox(width: 12),
-                                  Text(
-                                    'DAY 74',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                                  // Text(
+                                  //   'DAY 74',
+                                  //   style: TextStyle(
+                                  //     fontSize: 14,
+                                  //   ),
+                                  // ),
                                   Spacer(),
-                                  Text(
-                                    '@Mark Rise',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.black54,
-                                    ),
-                                  ),
+                                  // Text(
+                                  //   '@Mark Rise',
+                                  //   style: TextStyle(
+                                  //     fontSize: 14,
+                                  //     color: Colors.black54,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -134,8 +134,8 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                                 MainAxisAlignment.spaceBetween,
                                 children: const <Widget>[
                                   EventStat(
-                                    title: '20h: 25m: 08s',
-                                    subtitle: 'Remaining Time',
+                                    title: 'Abstract Monster',
+                                    subtitle: 'By @venomxx',
                                   ),
                                   EventStat(
                                     title: '15.97 ETH',
@@ -239,22 +239,22 @@ class _Header extends StatelessWidget {
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: const <Widget>[
+            // Text(
+            //   'Live',
+            //   style: bodyTextStyle,
+            // ),
+            SizedBox(height: 8),
             Text(
-              'Live',
-              style: bodyTextStyle,
-            ),
-            const SizedBox(height: 8),
-            const Text(
               'Auctions',
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 2),
+            SizedBox(height: 2),
             Text(
-              'Enjoy! The latest hot acutions',
+              'Enjoy! The latest hot auctions',
               style: bodyTextStyle,
             ),
           ],
@@ -272,19 +272,19 @@ class _AppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const AppLogo(),
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage('assets/images/profile.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
+      children: const [
+        AppLogo(),
+        // Container(
+        //   width: 40,
+        //   height: 40,
+        //   decoration: const BoxDecoration(
+        //     shape: BoxShape.circle,
+        //     image: DecorationImage(
+        //       image: AssetImage('assets/images/profile.jpg'),
+        //       fit: BoxFit.cover,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

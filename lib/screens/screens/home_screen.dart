@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: _children[context.watch<BottomNavyBarProvider>().currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
+        elevation: 24,
         iconSize: 22,
         backgroundColor: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? Colors.black : Colors.white,
         selectedItemColor: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? Colors.greenAccent : Colors.black,
