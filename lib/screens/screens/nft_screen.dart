@@ -168,7 +168,7 @@ class _NFTScreenState extends State<NFTScreen> {
                               ),
                               const SizedBox(height: 16),
                               Button(
-                                order: ds["order"],
+                                order: widget.order,
                                 amt: widget.isHomePage ? double.parse(ds["price"].toString()) : 15.37,
                               ),
                             ],
@@ -345,6 +345,9 @@ class _ButtonState extends State<Button> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: ()async{
+        // final provider =  Provider.of<BottomNavyBarProvider>(context,listen: false);
+        // provider.changePage(3);
+        Navigator.of(context).pop();
         final providerWeb3 =  Provider.of<Web3Api>(context,listen: false);
         var temp = providerWeb3.withdrawCoin(widget.amt!.toDouble());
         await FirebaseFirestore.instance
@@ -355,14 +358,13 @@ class _ButtonState extends State<Button> {
           // "desc": dc.text,
           // "title": tc.text,
           // "price": int.parse(pc.text),
-          "ownedBy": -1,
-          "order": "@venomxx",
+          "ownedBy": "@venomxx",
+          // "order": -1,
           // ds['question'].toString(): controllers[index].text.toString(),
           // "IsCompleted" : "0"
           // "price": price
         }, SetOptions(merge: true));
-        final provider =  Provider.of<BottomNavyBarProvider>(context,listen: false);
-        provider.changePage(3);
+
       },
       child: Container(
         padding: const EdgeInsets.symmetric(

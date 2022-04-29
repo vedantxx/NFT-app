@@ -74,6 +74,7 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                             documentSnapshot.data() as Map<String, dynamic>;
                             return GestureDetector(
                               onTap: () {
+                                // debugPrint(ds["order"]);
                                 Navigator.push(
                                     context,
                                     PageTransition(
