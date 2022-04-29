@@ -45,5 +45,13 @@ class StaticData {
       percentProgress: 2.7,
       trend: Trend.DOWN,
     ),
+    Coin(
+      amountProgress: 5.25,
+      balance: 0.00,
+      currentPrice: 24.37,
+      type: CoinType.LITECOIN,
+      percentProgress: 4,
+      trend: Trend.DOWN,
+    ),
   ];
 }

@@ -19,25 +19,26 @@ class CryptoDashHomePage extends StatelessWidget {
         leading: const Icon(
           Icons.menu,
           // FlutterIcons.menu_fea,
+          color: Colors.black,
         ),
         centerTitle: true,
         title: const Text("My Money"),
         backgroundColor: Colors.black,
-        actions: const [
-          NotificationBell(),
-        ],
+        // actions: const [
+        //   NotificationBell(),
+        // ],
       ),
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            SizedBox(
-              height: 25.0,
-            ),
-            SlideAnimation(child: AccountBalance()),
-            SizedBox(
-              height: 40.0,
-            ),
+            // SizedBox(
+            //   height: 25.0,
+            // ),
+            // SlideAnimation(child: AccountBalance()),
+            // SizedBox(
+            //   height: 40.0,
+            // ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Divider(

@@ -66,7 +66,7 @@ class _UserBalanceState extends State<UserBalance> {
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               return CoinCard(
-                coin: StaticData.userCoins[index],
+                // coin: StaticData.userCoins[index],
                 index: index,
               );
             },

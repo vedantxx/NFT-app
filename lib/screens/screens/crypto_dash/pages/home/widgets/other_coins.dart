@@ -33,7 +33,7 @@ class OtherCoins extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               return CoinCard(
-                coin: StaticData.otherCoins[index],
+                // coin: StaticData.otherCoins[index],
                 index: index + 2,
               );
             },
@@ -42,7 +42,7 @@ class OtherCoins extends StatelessWidget {
                 height: 15.0,
               );
             },
-            itemCount: StaticData.otherCoins.length,
+            itemCount: 10,
           )
         ],
       ),

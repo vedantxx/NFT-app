@@ -20,9 +20,11 @@ import '../../../utils/constants.dart';
 import '../../coin_detail/coin_detail.dart';
 
 class CoinCard extends StatefulWidget {
-  final Coin? coin;
+  // final Coin? coin;
   final int index;
-  const CoinCard({Key? key, this.coin,required this.index}) : super(key: key);
+  const CoinCard({Key? key,
+    // this.coin,
+    required this.index}) : super(key: key);
 
   @override
   State<CoinCard> createState() => _CoinCardState();
@@ -63,14 +65,14 @@ class _CoinCardState extends State<CoinCard> {
       actionExtentRatio: 0.25,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) {
-                return CoinDetail(coin: widget.coin);
-              },
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (BuildContext context) {
+          //       return CoinDetail(coin: widget.coin);
+          //     },
+          //   ),
+          // );
         },
         child: Container(
           height: 90.0,
@@ -105,10 +107,10 @@ class _CoinCardState extends State<CoinCard> {
                   const SizedBox(
                     height: 5.0,
                   ),
-                  Text(
-                    "${widget.coin!.balance}",
-                    style: themeData.textTheme.caption!.copyWith(fontSize: 14.0),
-                  ),
+                  // Text(
+                  //   "${widget.coin!.balance}",
+                  //   style: themeData.textTheme.caption!.copyWith(fontSize: 14.0),
+                  // ),
                 ],
               ),
               const Spacer(),
@@ -140,7 +142,7 @@ class _CoinCardState extends State<CoinCard> {
                         Container(
                           width: 124,
                           child: Text(
-                            getCoinProgress(widget.coin!,currencies[widget.index]),
+                            getCoinProgress(currencies[widget.index]),
                             style: TextStyle(
                               // color: widget.coin!.trend == Trend.UP
                               //     ? kSuccessColor
@@ -191,7 +193,7 @@ class _CoinCardState extends State<CoinCard> {
   }
 }
 
-String getCoinProgress(Coin coin, Currency currency) {
+String getCoinProgress(Currency currency) {
   String returnValue = "";
 
   // if (coin.trend == Trend.UP) {
