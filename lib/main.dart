@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test2/providers/bottom_navy_bar_provider.dart';
 import 'package:test2/providers/currency_provider.dart';
@@ -8,7 +9,9 @@ import 'package:test2/screens/screens/onboarding_screen.dart';
 import 'package:test2/widgets/currency_widgets.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider<CurrencyProvider>(create: (_) => CurrencyProvider()),

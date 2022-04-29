@@ -1,11 +1,15 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:test2/animations/slide_animation.dart';
 import 'package:test2/models/Post.dart';
 import 'package:test2/screens/screens/explore_pages/data/Sample.dart';
 import 'package:test2/screens/screens/explore_pages/helper/Colorsys.dart';
 import 'package:test2/screens/screens/explore_pages/pages/SingleUser.dart';
+import 'package:test2/screens/screens/explore_pages/pages/add_new_nft.dart';
+import 'package:test2/services/storage_service.dart';
 
 import 'pages/SinglePost.dart';
 
@@ -19,6 +23,7 @@ class ExploreHomePage extends StatefulWidget {
 class _ExploreHomePageState extends State<ExploreHomePage> {
 
   final PageController _pageController = PageController();
+  final Storage storage = Storage();
 
   int selectedPageFilter = 0;
 
@@ -40,8 +45,84 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
         //   icon: Icon(Icons.menu, color: Colorsys.darkGray,), onPressed: () {  },
         // ),
         actions: [
-          IconButton(onPressed: (){
+          IconButton(onPressed: ()async{
 
+
+            // final results = await FilePicker.platform.pickFiles(
+            //   allowMultiple: false,
+            //   type: FileType.custom,
+            //   allowedExtensions: ['png','jpg','gif','jpeg'],
+            // );
+            // if(results == null){
+            //   ScaffoldMessenger.of(context).showSnackBar(
+            //       const SnackBar(content: Text("No file Selected")));
+            //   return;
+            // }
+            //
+            // ScaffoldMessenger.of(context).showSnackBar(
+            //     const SnackBar(content: Text("File Uploaded")));
+            //
+            // final path = results.files.single.path;
+            // final pathName = results.files.single.name;
+            // debugPrint(path);
+            // debugPrint(pathName);
+            // await FirebaseFirestore
+            //     .instance
+            //     .collection(
+            //     "counters")
+            //     .doc("temp")
+            //     .set(
+            //     {
+            //       "home_cnt":
+            //       FieldValue
+            //           .increment(
+            //           1)
+            //     },
+            //     SetOptions(
+            //         merge:
+            //         true));
+            // storage.uploadFile(
+            //     path!,
+            //     pathName,
+            //     "Home",
+            //     // FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
+            //     // widget.id,
+            // ).then((value) => debugPrint('done'));
+            // // if(FirebaseAuth.instance.currentUser!.email != null
+            // //     && FirebaseAuth.instance.currentUser!.email != ""){
+            // //   storage.uploadFile(
+            // //       path!,
+            // //       pathName,
+            // //       // widget.id.toString(),
+            // //       // "orders",
+            // //       // FirebaseAuth.instance.currentUser!.email.toString(),
+            // //       widget.id,
+            // //       "orders").then((value) => debugPrint('done'));
+            // //
+            // //
+            // //
+            // // }
+            // // else if(FirebaseAuth.instance.currentUser!.phoneNumber != null
+            // //     && FirebaseAuth.instance.currentUser!.phoneNumber != ""){
+            // //   storage.uploadFile(
+            // //       path!,
+            // //       pathName,
+            // //       // "orders",
+            // //       // FirebaseAuth.instance.currentUser!.phoneNumber.toString(),
+            // //       widget.id,
+            // //       "orders").then((value) => debugPrint('done'));
+            // // }
+            // await FirebaseFirestore.instance.collection('Home').doc("8").set({
+            //   "imgName" : pathName,
+            //   // ds['question'].toString(): controllers[index].text.toString(),
+            //   // "IsCompleted" : "0"
+            //   // "price": price
+            // },
+            //     SetOptions(merge : true)
+            // );
+            //
+            // debugPrint(pathName);
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AddNewNft()));
           }, icon: const Icon(Icons.add,color: Colors.black,))
         ],
       ),

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "863411103324",
+    "project_id": "nft-pro-1cab3",
+    "storage_bucket": "nft-pro-1cab3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:863411103324:android:309634cfe57b26b566a899",
+        "android_client_info": {
+          "package_name": "com.example.test2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "863411103324-tt3ml2emd3bng2q1s3hu5hjgpjap8clf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.test2",
+            "certificate_hash": "4320128e598174605d69147eb70b43b2674f8d76"
+          }
+        },
+        {
+          "client_id": "863411103324-ookbsfls06rlmj3tror2or6hf5csqn2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqGcyENnvUK1CtEJFVC8xQIyibt3Oulr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "863411103324-ookbsfls06rlmj3tror2or6hf5csqn2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

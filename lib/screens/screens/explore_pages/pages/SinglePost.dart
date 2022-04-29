@@ -37,7 +37,9 @@ class _SinglePostState extends State<SinglePost> {
                     context,
                     PageTransition(
                       child: NFTScreen(heroTag: widget.heroTag,
-                        imgUrl: imgUrls[int.parse(widget.heroTag)],),
+                        order: -1,
+                        imgUrl: imgUrls[int.parse(widget.heroTag)],
+                      isHomePage: false,),
                       type: PageTransitionType.fadeIn,
                     ));
               },
@@ -166,7 +168,10 @@ class _SinglePostState extends State<SinglePost> {
                   context,
                   PageTransition(
                     child: NFTScreen(heroTag: isFirst ? (index + 7).toString() : (index + 16).toString(),
-                      imgUrl: imgUrls[isFirst ? (index + 7) : (index + 16)],),
+                      imgUrl: imgUrls[isFirst ? (index + 7) : (index + 16)],
+                    isHomePage: false,
+                      order: -1,
+                    ),
                     type: PageTransitionType.fadeIn,
                   ));
             },

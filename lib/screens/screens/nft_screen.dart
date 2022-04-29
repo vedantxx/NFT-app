@@ -1,129 +1,188 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:test2/animations/fade_animation.dart';
 import 'package:test2/animations/slide_animation.dart';
+import 'package:test2/services/storage_service.dart';
 import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/constants.dart';
 
 class NFTScreen extends StatefulWidget {
   final String heroTag,imgUrl;
-  const NFTScreen({Key? key,required this.heroTag,required this.imgUrl}) : super(key: key);
+  final bool isHomePage;
+  final int order;
+  const NFTScreen({Key? key,required this.heroTag,required this.imgUrl,required this.isHomePage,required this.order}) : super(key: key);
 
   @override
   State<NFTScreen> createState() => _NFTScreenState();
 }
 
 class _NFTScreenState extends State<NFTScreen> {
+  final Storage storage = Storage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 50),
-              const _AppBar(),
-              const SizedBox(height: 32),
-              Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.4,
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.black26),
-                ),
-                child: Hero(
-                  tag: widget.heroTag,
-                  child: Image.asset(
-                    widget.imgUrl,
-                    height: 260,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              SlideAnimation(
-                intervalStart: 0.4,
-                begin: const Offset(0, 30),
-                child: FadeAnimation(
-                  intervalStart: 0.4,
-                  child: Column(
+          child: StreamBuilder(
+            stream: FirebaseFirestore.instance.collection("Home")
+                .where("order",isEqualTo: widget.order).snapshots(),
+            builder: (context,  AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+
+              if (streamSnapshot.hasData && streamSnapshot.data != null)
+              {
+                final DocumentSnapshot documentSnapshot =
+                streamSnapshot.data!.docs[0];
+                Map<String, dynamic> ds =
+                documentSnapshot.data() as Map<String, dynamic>;
+                  return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // const Text(
-                      //   'DAY 74',
-                      //   style: TextStyle(
-                      //     fontSize: 24,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              'assets/users/vedant.jpeg',
-                              width: 40,
-                              height: 40,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            '@venomxx',
-                            style: TextStyle(
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Who we were and what we will become are there, they are around us, they are batting, they are resting and they are being watched...More',
-                        style: bodyTextStyle,
-                      ),
-                      const SizedBox(height: 8),
-                      const Divider(),
-                      const SizedBox(height: 8),
-                      ListTile(
-                        contentPadding: EdgeInsets.zero,
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: Image.asset(
-                            'assets/images/user.jpeg',
-                            width: 40,
-                            height: 40,
+                    children: [
+                      const SizedBox(height: 50),
+                      const _AppBar(),
+                      const SizedBox(height: 32),
+                      Container(
+                        width: double.infinity,
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.black26),
+                        ),
+                        child: Hero(
+                          tag: widget.heroTag,
+                          child:
+                          widget.isHomePage ? FutureBuilder(
+                              future: storage.downloadURL(ds["imgName"], "Home"),
+                              builder: (
+                                  BuildContext context, AsyncSnapshot<String> snapshot){
+                                if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+                                  return Container(
+                                    // color: Colors.grey,
+                                    width: MediaQuery.of(context).size.width * 0.8,//300
+                                    // height: 300,
+                                    // height: MediaQuery.of(context).size.height * 0.32,//300
+                                    child: Image.network(
+                                      snapshot.data!,fit: BoxFit.cover,
+                                    ),
+                                  );
+                                }
+                                if(snapshot.connectionState == ConnectionState.waiting || !snapshot.hasData){
+                                  return const Center(
+                                    // child: CircularProgressIndicator(),
+                                    child: Text("DIGI"),
+                                  );
+                                }
+                                return Container();
+                              }
+                          ):
+                          Image.asset(
+                            widget.imgUrl,
+                            height: 260,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        title: const Text('Highest Bid Placed By'),
-                        subtitle: const Text(
-                          'Merry Rose',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        trailing: const Text(
-                          '15.97 ETH',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(height: 24),
+                      SlideAnimation(
+                        intervalStart: 0.4,
+                        begin: const Offset(0, 30),
+                        child: FadeAnimation(
+                          intervalStart: 0.4,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              // const Text(
+                              //   'DAY 74',
+                              //   style: TextStyle(
+                              //     fontSize: 24,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              const SizedBox(height: 8),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Row(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        'assets/users/vedant.jpeg',
+                                        width: 40,
+                                        height: 40,
+                                        fit: BoxFit.cover,
+                                      ) ,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const Text(
+                                      '@venomxx',
+                                      style: TextStyle(
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              const Text(
+                                'Who we were and what we will become are there, they are around us, they are batting, they are resting and they are being watched...More',
+                                style: bodyTextStyle,
+                              ),
+                              const SizedBox(height: 8),
+                              const Divider(),
+                              const SizedBox(height: 8),
+                              ListTile(
+                                contentPadding: EdgeInsets.zero,
+                                leading: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.asset(
+                                    'assets/images/user.jpeg',
+                                    width: 40,
+                                    height: 40,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                title: const Text('Highest Bid Placed By'),
+                                subtitle: const Text(
+                                  'Merry Rose',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                trailing: const Text(
+                                  '15.97 ETH',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              const Button(),
+                            ],
                           ),
                         ),
                       ),
-                      const SizedBox(height: 16),
-                      const Button(),
                     ],
-                  ),
-                ),
-              ),
-            ],
+                  );
+                }
+              else if (streamSnapshot.connectionState ==
+                  ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              return Container(
+                color: Colors.grey,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: const Text("No internet connection"),
+              );
+              }
           ),
         ),
       ),
