@@ -7,6 +7,7 @@ import 'package:test2/animations/animations.dart';
 import 'package:test2/animations/fade_animation.dart';
 import 'package:test2/animations/slide_animation.dart';
 import 'package:test2/providers/currency_provider.dart';
+import 'package:test2/providers/web3api.dart';
 import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/constants.dart';
 
@@ -26,6 +27,9 @@ class OnBoardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider =  Provider.of<CurrencyProvider>(context);
     final currencyDataSource = provider.currencies;
+
+    // providerWeb3.getBalance();
+    // final currencyDataSource = provider.currencies;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -174,6 +178,7 @@ class OnBoardingScreen extends StatelessWidget {
                             children: <Widget>[
                               GestureDetector(
                                 onTap: () {
+
                                   Navigator.push(
                                     context,
                                     PageTransition(
@@ -181,6 +186,8 @@ class OnBoardingScreen extends StatelessWidget {
                                       type: PageTransitionType.fadeIn,
                                     ),
                                   );
+                                  final providerWeb3 =  Provider.of<Web3Api>(context,listen: false);
+                                  providerWeb3.myInitState();
                                 },
                                 child: Container(
                                   width: 40,

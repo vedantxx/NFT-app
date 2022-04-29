@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test2/providers/bottom_navy_bar_provider.dart';
 import 'package:test2/providers/currency_provider.dart';
+import 'package:test2/providers/web3api.dart';
 import 'package:test2/screens/home_page.dart';
 import 'package:test2/screens/my_onboarding_screen.dart';
 import 'package:test2/screens/screens/home_screen.dart';
@@ -16,6 +17,7 @@ void main() async{
       providers: [
         ChangeNotifierProvider<CurrencyProvider>(create: (_) => CurrencyProvider()),
         ChangeNotifierProvider<BottomNavyBarProvider>(create: (_) => BottomNavyBarProvider()),
+        ChangeNotifierProvider<Web3Api>(create: (_) => Web3Api()),
       ],
   child: const MyApp()));
 }

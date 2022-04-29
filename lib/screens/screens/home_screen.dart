@@ -6,6 +6,8 @@ import 'package:test2/animations/page_transition.dart';
 import 'package:test2/animations/slide_animation.dart';
 import 'package:test2/providers/bottom_navy_bar_provider.dart';
 import 'package:test2/screens/screens/explore_page.dart';
+import 'package:test2/screens/screens/explore_pages/data/Sample.dart';
+import 'package:test2/screens/screens/explore_pages/pages/SingleUser.dart';
 import 'package:test2/screens/screens/my_nft_home_page.dart';
 import 'package:test2/utils/constants_nft.dart';
 // import 'package:test2/constants.dart';
@@ -33,6 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
     const ExploreHomePage(),
     // const ExplorePage(),
     const CryptoDashHomePage(),
+    SingleUser(
+      user: Sample.postOne.user,
+    )
     // const ExplorePage(),
   ];
 
@@ -91,11 +96,11 @@ class _HomeScreenState extends State<HomeScreen> {
               isActive: context.watch<BottomNavyBarProvider>().currentIndex == 2 ? true : false,),
             label: 'Shop',
           ),
-          // BottomNavigationBarItem(
-          //   icon: BottomIcon(icon: Iconsax.wallet_3,
-          //     isActive: context.watch<BottomNavyBarProvider>().currentIndex == 4 ? true : false,),
-          //   label: 'Wallet',
-          // ),
+          BottomNavigationBarItem(
+            icon: BottomIcon(icon: Iconsax.profile_2user,
+              isActive: context.watch<BottomNavyBarProvider>().currentIndex == 3 ? true : false,),
+            label: 'Profile',
+          ),
         ],
       ),
     );
