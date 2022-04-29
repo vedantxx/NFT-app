@@ -17,6 +17,18 @@ class ExploreHomePage extends StatefulWidget {
 }
 
 class _ExploreHomePageState extends State<ExploreHomePage> {
+
+  final PageController _pageController = PageController();
+
+  int selectedPageFilter = 0;
+
+  void onTabSelected(int index){
+    setState((){
+      selectedPageFilter = index;
+      _pageController.jumpToPage(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +49,12 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: <Widget>[
-            SlideAnimation(child: searchBox()),
-            const SizedBox(height: 40,),
+            // SlideAnimation(child: searchBox()),
+            const SizedBox(height: 8,),
             SlideAnimation(
               begin: const Offset(600, 0),
               child: Container(
+                height: MediaQuery.of(context).size.height * 0.82,
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 decoration: const BoxDecoration(
@@ -61,6 +74,7 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                     ),),
                     const SizedBox(height: 20,),
                     Container(
+                      // height: MediaQuery.of(context).size.height * 0.6,
                       decoration: BoxDecoration(
                           border: Border(bottom: BorderSide(
                               color: Colorsys.lightGrey
@@ -69,38 +83,159 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text("Recommend", style: TextStyle(
-                                  color: Colorsys.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15
-                              ),),
-                              Container(
-                                width: 50,
-                                padding: const EdgeInsets.only(bottom: 10),
-                                decoration: BoxDecoration(
-                                    border: Border(bottom: BorderSide(
-                                        color: Colorsys.orange,
-                                        width: 3
-                                    ))
+                          GestureDetector(
+                            onTap: (){
+                              onTabSelected(0);
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 500),
+                                  alignment: Alignment.center,
+                                  height: 48,
+                                  width: 120,
+                                  color: (selectedPageFilter == 0)
+                                      ?
+                                  Colors.blueGrey.withOpacity(0.2)
+                                      : Colors.transparent,
+                                  child: Text("Recommend", style: TextStyle(
+                                      color: Colorsys.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15
+                                  ),),
                                 ),
-                              )
-                            ],
+                                AnimatedContainer(
+                                  duration: const Duration(milliseconds: 500),
+                                  height: 4,
+                                  // width: 4,
+                                  color: Colors.blue,
+                                  width: (selectedPageFilter == 0) ? 48 : 0,
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  // decoration: BoxDecoration(
+                                  //     border: Border(bottom: BorderSide(
+                                  //         color: Colorsys.orange,
+                                  //         width: 48
+                                  //     ))
+                                  // ),
+                                )
+                              ],
+                            ),
                           ),
                           const SizedBox(width: 20,),
-                          Text("Likes", style: TextStyle(
-                              color: Colorsys.grey,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15
-                          ),)
+                          // GestureDetector(
+                          //   onTap: (){
+                          //     onTabSelected(1);
+                          //   },
+                          //   child: Column(
+                          //     children: [
+                          //       AnimatedContainer(
+                          //         duration: const Duration(milliseconds: 500),
+                          //         alignment: Alignment.center,
+                          //         height: 48,
+                          //         width: 120,
+                          //         color: (selectedPageFilter == 1)
+                          //             ?
+                          //         Colors.blueGrey.withOpacity(0.2)
+                          //             : Colors.transparent,
+                          //         child: Text("Likes", style: TextStyle(
+                          //             color: Colorsys.grey,
+                          //             fontWeight: FontWeight.w500,
+                          //             fontSize: 15
+                          //         ),),
+                          //       ),
+                          //       AnimatedContainer(
+                          //         duration: const Duration(milliseconds: 500),
+                          //         height: 4,
+                          //         // width: 4,
+                          //         color: Colors.blue,
+                          //         width: (selectedPageFilter == 1) ? 48 : 0,
+                          //         padding: const EdgeInsets.only(bottom: 10),
+                          //         // decoration: BoxDecoration(
+                          //         //     border: Border(bottom: BorderSide(
+                          //         //         color: Colorsys.orange,
+                          //         //         width: 48
+                          //         //     ))
+                          //         // ),
+                          //       )
+                          //     ],
+                          //   ),
+                          // ),
+                          // GestureDetector(
+                          //   onTap: (){
+                          //     onFilterSelectedCat(setState, index);
+                          //   },
+                          //   child: Container(
+                          //     child: Row(
+                          //       children: [
+                          //         AnimatedContainer(
+                          //           duration: const Duration(milliseconds: 500),
+                          //           height: (selectedPageFilter == index) ? 48 : 0,
+                          //           width: 4,
+                          //           color: Colors.blue,
+                          //         ),
+                          //         Expanded(
+                          //           child: AnimatedContainer(
+                          //             duration: const Duration(milliseconds: 500),
+                          //             alignment: Alignment.center,
+                          //             height: 48,
+                          //             color:
+                          //             (selectedPageFilter == index)
+                          //                 ?
+                          //             Colors.blueGrey.withOpacity(0.2)
+                          //             // ,
+                          //                 :
+                          //             Colors.transparent,
+                          //             child: const Padding(
+                          //               padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 4),
+                          //               // child: Text(
+                          //               //     (index == 0) ? "projects" :
+                          //               //     (index == 1) ? "buildings" :
+                          //               //     (index == 2) ? "wings" :
+                          //               //     (index == 3) ? "floors" :
+                          //               //     (index == 4) ? "unit type" :
+                          //               //     (index == 5) ? "alloted" : "hi"),
+                          //             ),
+                          //           ),),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // )
+
                         ],
                       ),
                     ),
-                    const SizedBox(height: 30,),
-                    makePost(Sample.postOne,true),
-                    makePost(Sample.postTwo,false),
+                    const SizedBox(height: 8,),
+                    Expanded(
+                      // height: MediaQuery.of(context).size.height * 0.72,
+                      child: PageView(
+                        controller: _pageController,
+                        children: [
+                          SingleChildScrollView(
+                            // physics: const RangeMaintainingScrollPhysics(),
+                            // height: MediaQuery.of(context).size.height * 0.8,
+                            child: Column(
+                              // physics: const NeverScrollableScrollPhysics(),
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: makePost(Sample.postOne,true),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: makePost(Sample.postTwo,false),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: const Center(
+                              child: Text("Hi"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -113,7 +248,7 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
 
   Widget makePost(Post post,bool isFirst) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 30),
+      margin: const EdgeInsets.only(bottom: 4),
       child: Column(
         children: <Widget>[
           InkWell(
@@ -149,10 +284,10 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                               fontSize: 13,
                               color: Colorsys.grey
                           ),),
-                          Text(post.dateAgo.toString(), style: TextStyle(
-                              fontSize: 13,
-                              color: Colorsys.grey
-                          ),)
+                          // Text(post.dateAgo.toString(), style: TextStyle(
+                          //     fontSize: 13,
+                          //     color: Colorsys.grey
+                          // ),)
                         ],
                       )
                     ],
@@ -195,7 +330,8 @@ class _ExploreHomePageState extends State<ExploreHomePage> {
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.orange
                           ),
-                          child: Stack(
+                          child: Stack
+                            (
                             children: <Widget>[
                               Align(
                                 alignment: Alignment.bottomRight,

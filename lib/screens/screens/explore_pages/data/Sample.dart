@@ -12,7 +12,7 @@ class Sample {
     username: "@venomxx",
     followers: 400,
     following: 190,
-    profilePicture: "assets/users/vedant.jpg",
+    profilePicture: "assets/users/vedant.jpeg",
     collocation: [
       Collocation(
         name: "Photography",
