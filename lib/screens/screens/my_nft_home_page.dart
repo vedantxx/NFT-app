@@ -50,7 +50,7 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                 height: 560,
                 child: PageView.builder(
                   controller: _pageController,
-                  itemCount: 2,
+                  itemCount: 4,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -113,9 +113,7 @@ class _MyNFTHomePageState extends State<MyNFTHomePage> {
                                     color: Theme.of(context).primaryColor,
                                     image: DecorationImage(
                                       image: AssetImage(
-                                        index % 2 == 0
-                                            ? 'assets/images/image_0.jpg'
-                                            : 'assets/images/image-1.jpeg',
+                                        imgUrls[index].toString(),
                                       ),
                                       fit: BoxFit.cover,
                                     ),

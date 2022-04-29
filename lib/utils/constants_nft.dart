@@ -8,6 +8,8 @@ const bodyTextStyle = TextStyle(
 final List<String> imgUrls = [
   "assets/images/image_0.jpg",
   "assets/images/image-1.jpeg",
+  "assets/images/profile.jpg",
+  "assets/images/user.jpeg",
   "assets/nftpro/one.png",
   "assets/nftpro/two.jpeg",
   "assets/nftpro/three.png",
