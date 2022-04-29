@@ -31,12 +31,12 @@ class OnBoardingScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: const _AppBar(),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: FadeAnimation(
@@ -57,7 +57,7 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: SlideAnimation(
@@ -116,17 +116,17 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
-              child: FadeAnimation(
+              child: const FadeAnimation(
                 child: Text(
                   'Digital marketplace for crypto collectibles and non-fungible tokens',
                   style: bodyTextStyle,
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
               height: 200,
               padding: EdgeInsets.only(left: _padding),
@@ -143,16 +143,16 @@ class OnBoardingScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: const <Widget>[
                           EventStat(
-                            title: '12.1K+',
-                            subtitle: 'Art Work',
+                            title: 'Web 3',
+                            subtitle: 'Ether',
                           ),
                           EventStat(
-                            title: '1.7M+',
-                            subtitle: 'Artist',
+                            title: "Blockchain",
+                            subtitle: 'For Artists',
                           ),
                           EventStat(
-                            title: '45K+',
-                            subtitle: 'Auction',
+                            title: "NFT's",
+                            subtitle: 'For Auctions',
                           ),
                         ],
                       ),
@@ -165,7 +165,7 @@ class OnBoardingScreen extends StatelessWidget {
                       child: FadeAnimation(
                         intervalEnd: 0.2,
                         child: Container(
-                          padding: EdgeInsets.all(24),
+                          padding: const EdgeInsets.all(24),
                           decoration: const BoxDecoration(
                             color: Color(0xffe6d9fe),
                           ),
@@ -177,7 +177,7 @@ class OnBoardingScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     PageTransition(
-                                      child: HomeScreen(),
+                                      child: const HomeScreen(),
                                       type: PageTransitionType.fadeIn,
                                     ),
                                   );
@@ -191,11 +191,11 @@ class OnBoardingScreen extends StatelessWidget {
                                   child: const Icon(Iconsax.arrow_right_1),
                                 ),
                               ),
-                              SizedBox(height: 24),
+                              const SizedBox(height: 24),
                               const Text(
                                 'Discover \nArtwork',
                                 style: TextStyle(
-                                  fontSize: 24,
+                                  fontSize: 20,
                                   height: 1,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 9,
@@ -216,7 +216,7 @@ class OnBoardingScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: _padding),
               child: SlideAnimation(
@@ -227,10 +227,10 @@ class OnBoardingScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        'Supported By',
-                        style: bodyTextStyle,
-                      ),
+                      // const Text(
+                      //   'Supported By',
+                      //   style: bodyTextStyle,
+                      // ),
                       SvgPicture.asset(
                         'assets/images/binance.svg',
                         width: 24,
@@ -262,22 +262,22 @@ class _AppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        const AppLogo(),
-        Container(
-          width: 40,
-          height: 40,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.black,
-          ),
-          child: const Center(
-            child: Icon(
-              Iconsax.wallet_1,
-              color: Colors.white,
-            ),
-          ),
-        ),
+      children: const <Widget>[
+        AppLogo(),
+        // Container(
+        //   width: 40,
+        //   height: 40,
+        //   decoration: const BoxDecoration(
+        //     shape: BoxShape.circle,
+        //     color: Colors.black,
+        //   ),
+        //   // child: const Center(
+        //   //   child: Icon(
+        //   //     Iconsax.wallet_1,
+        //   //     color: Colors.white,
+        //   //   ),
+        //   // ),
+        // ),
       ],
     );
   }
@@ -347,15 +347,15 @@ class EventStat extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           subtitle,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             color: Colors.black54,
           ),
