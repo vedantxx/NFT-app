@@ -114,8 +114,8 @@ class Web3Api extends ChangeNotifier {
   }
 
 
-  Future<String> withdrawCoin() async {
-    var bigAmount = BigInt.from(100);
+  Future<String> withdrawCoin(double amt) async {
+    var bigAmount = BigInt.from(amt);
 
     var response = await submit("withdrawBalance",[bigAmount]);
 

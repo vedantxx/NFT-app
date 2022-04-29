@@ -475,7 +475,7 @@ class _SingleUserState extends State<SingleUser> {
                 elevation: 0,
                 onPressed: () {
                   final providerWeb3 =  Provider.of<Web3Api>(context,listen: false);
-                  var temp = providerWeb3.withdrawCoin();
+                  var temp = providerWeb3.withdrawCoin(100);
                   // providerWeb3.getBalance();
                   setState(() {
 
